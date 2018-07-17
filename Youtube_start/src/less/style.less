@@ -1,0 +1,279 @@
+// Такие комментарии LESS-ом будут вырезаны из финальной CSS-ки
+
+// В верхней части файла обычно идут вещи, общие для всех элементов на странице
+// и просто разные общие вещи.
+
+@import "normalize";  // Подключаем нормалайз
+@import "icons";      // Иконочный шрифт объявлен в файле icons.less
+
+// Переменные. Их я обычно задаю вверху файла или вообще в отдельном файле. Я стараюсь держать все переменные рядом
+// друг с другом.
+
+// Имена переменных со шрифтами я стараюсь начинать с font-
+@font-sans: Arial, Helvetica, sans-serif;
+
+// Имена цветов я обычно начинаю с color-
+@color-warm-grey: #999;
+@color-black: #333;
+
+// Имена переменных для теней у меня обычно начинаются с shadow, для теней текста - text-shadow
+@shadow: 0 0 6px rgba(0,0,0,0.2);
+@shadow-light: 0 0 6px rgba(0,0,0,0.1);
+
+// Базовый стиль для body. Так как в HTML body считается "root node" - корневым элементом - основные стили я обычно
+// задаю здесь. В частности, цвет фона (даже если он белый - я его задаю), цвет текста, размер шрифта (интерлиньяж и
+// межбуквенное расстояние - тоже тут)
+
+body{
+  font: normal 14px @font-sans;
+  letter-spacing: 0.6px;
+  line-height: 22px;
+
+  background: #fff;
+  color: @color-black;
+}
+
+// Вёрстку для ссылок я обычно задаю вот так. С тем, чтобы заставить себя в местах, где я хочу чтобы ссылки выглядели
+// по-другому, мне пришлось явно прописывать для них стили. Это не обязательно, разумеется - исключительно лично моя
+// привычка, которую никто не заставляет перенимать ;-)
+
+a{
+  color: inherit;
+  text-decoration: inherit;
+}
+
+// Общий стиль для врапперов и контента.
+
+// Врапперы - это горизонтальные блоки на всю ширину, внутри которых всегда находится блок .content, уже внутри которого
+// - разметка.
+
+// Это позволит мне в будущем, например, сделать блоки, у которых фон будет занимать всю ширину окна браузера, а также
+// блоки, у которых фон занимает только ее часть. Или ограничить ширину контента, при этом оставив ширину ФОНА
+// неограниченой. Или сделать какие-нибудь отступы для мобильных версий... В общем, полезный подход, рекоммендую
+// пользоваться чем-то подобным в вашей верстке.
+
+.wrapper{
+  .content{
+    max-width: 1200px;
+    margin: auto;
+    box-sizing: border-box;
+  }
+}
+
+
+// Кнопка. Такая кнопка встречается несколько раз на сайте, поэтому эта верстка объявлена вне какого-то враппера.
+
+.button-follow{
+  box-sizing: border-box;
+  min-width: 100px;
+  height: 30px;
+  line-height: 30px;
+  color: #fff;
+  background: #f00;
+  border-radius: 3px;
+  padding: 0 20px;
+  border:none;
+}
+
+// Тут - вёрстка для аватарки. Я вынес её в отдельный файл, потому что она достаточно самобытна.
+@import "avatar";
+
+// ---
+// Ниже - вёрстка для отдельных блоков. По-хорошему, каждый из них, даже самый маленький, нужно было бы вынести в
+// отдельный файл. Это нужно для того, чтобы если разработчиков несколько - команда могла работать с РАЗНЫМИ файлами
+// и не мешать друг другу.
+//
+// Плюс, когда нужно что-то быстро поправить - легче найти место, в котором нужно что-то поправить.
+// ---
+
+// это был бы файл head-bar.less
+
+.wrapper.head-bar{
+  padding: 5px;
+  .bar{
+    height: 56px;
+    line-height: 56px;
+    box-shadow: @shadow;
+    display: flex;
+    .logo {
+      flex: 0 0 160px;
+      border-right: 1px solid #e6e6e6;
+      position: relative;
+      background: url('../img/logo.png') center center no-repeat;
+      background-size: 107px 24px;
+      a{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        display: block;
+      }
+    }
+    .search {
+      position: relative;
+      input{
+        box-sizing: border-box;
+        padding-left: 57px;
+        font: inherit;
+        background: transparent url('../img/search.png') no-repeat 25px center;
+        background-size: 15.5px 16px;
+        position: absolute;
+        display: block;
+        width: 100%;
+        color: @color-black;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border: none;
+        &::placeholder{
+          opacity: 1; // For firefox: firefox sets default opacity of placeholder to 0.75 or something
+          color: @color-warm-grey;
+        }
+      }
+      flex: 1 1 auto;
+    }
+    .user {
+      border-left: 1px solid #e6e6e6;
+      padding: 0 30px;
+      color: @color-warm-grey;
+      .apps{
+        margin-right: 10px;
+        vertical-align: middle;
+        font-size: 18px;
+      }
+    }
+    .upload {
+      color: #fff;
+      padding: 0 27px;
+      background: #f00;
+    }
+  }
+
+}
+
+// это был бы файл head-menu.less
+
+.wrapper.head-menu{
+  .content{
+    height: 90px;
+    line-height: 90px;
+
+    ul{
+      padding: 0;
+      margin: 0;
+      text-align: center;
+      li{
+        color: @color-warm-grey;
+        list-style-type: none;
+        display: inline-block;
+
+        &.active{
+          font-weight: 600;
+          color:#f00;
+        }
+        &+li{
+          margin-left: 50px;
+        }
+      }
+
+    }
+
+  }
+}
+
+// это был бы файл hero.less
+
+.wrapper.hero{
+  padding: 5px;
+  .content{
+    box-shadow:
+            inset 0 0 0 9000px rgba(0,0,0,0.5),
+            @shadow;
+    background: transparent no-repeat center center;
+    background-size: cover;
+    padding: 84px 70px;
+    color: #fff;
+    .data{
+      max-width: 768px;
+    }
+    .user{
+      margin-bottom: 23px;
+      .avatar, .name{
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .name {
+        margin-left: 12px;
+      }
+    }
+
+    h2{
+      font: normal 36px @font-sans;
+      margin-top: 0;
+      margin-bottom: 25px;
+    }
+  }
+}
+
+// это был бы файл miniatures.less
+
+.wrapper.miniatures{
+  .content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 21px 60px;
+    .miniature{
+      margin: 21px 10px;
+    }
+  }
+}
+
+// Этот блок встречается на нескольких страницах - я вынес его объявление вне враппера. Внутри враппера оставил только
+// margin для него.
+
+.miniature{
+  height: 165px+112px;
+  width: 250px;
+  flex: 0 0 250px;
+  box-shadow: @shadow-light;
+  display: flex;
+  flex-direction: column;
+  .preview{
+    flex: 0 0 165px;
+    overflow: hidden;
+    img{
+      max-width: 100%;
+    }
+  }
+  .info{
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0 11px;
+
+    .description{
+      flex: 1 1 auto;
+      overflow: hidden;
+      padding-top: 20px;
+    }
+    .meta{
+      padding-bottom: 16px;
+      display: flex;
+      color: @color-warm-grey;
+      .author{
+        overflow: hidden;           // комбинация этих трех свойств заставит текст заканчиваться троеточием
+        text-overflow: ellipsis;    // если у текста не получается влезть в строчку.
+        white-space: nowrap;        // white-space: nowrap запрещает переносы строк.
+
+        flex: 1 1 auto;
+      }
+      .time{
+        margin-left: 1em;
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+.avatar{
+  display: inline-block;
+  vertical-align: middle;
+  width: 29px;
+  height: 29px;
+  background: #ff0 no-repeat center center;
+  background-size: cover;
+  border-radius: 50%;
+  position: relative;
+
+  &.offline,&.online{
+    &::before {
+      background: #f00;
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      content: '';
+    }
+  }
+  &.online::before{
+    background: #0f0;
+  }
+}
