@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body, html{
+    height: 100%;
+}
+
+body{
+    font-family: 'IBM Plex Sans', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    color: #49464f;
+    background-image: linear-gradient(60deg, #4b1ce9, #d970ab);
+}
+
+.layout{
+    width: 800px;
+    height: 600px;
+    margin: auto;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+}
+
+.layout>.left{
+    width: 321px;
+    height: 481px;
+    background: #ff0000;
+    position: relative;
+    border-radius: 8px;
+    background-image: linear-gradient(to bottom, #650fe5, #ee2b90);
+    box-shadow: 0 12px 39px 0 rgba(0, 0, 0, 0.5);
+    z-index:2;
+}
+.layout>.right{
+    width: 320px;
+    height:451px;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 10px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+.info{
+    padding-left: 23px;
+    padding-right: 26px;
+    padding-top:48px;
+    box-sizing: border-box;
+}
+
+.info h1{
+    font-weight: 400;
+    font-size:38px;
+}
+
+.info .prices{
+    font-size: 14px;
+    margin-top:5px;
+    font-weight: 300;
+}
+.info .prices .former{
+    font-size: 8px;
+    font-weight: 300;
+    color: #b5b4b6;
+}
+.info p{
+    margin-top:24px;
+    font-size: 9px;
+    font-weight: 300;
+    line-height: 1.89;
+    margin-bottom:12px;
+}
+.info .line{
+    margin-top: 18px;
+}
+.info .line .title{
+    font-size: 14px;
+    font-weight: 300;
+    color: #888788;
+    width:73px;
+    display: inline-block;
+}
+
+.info .line.sizes ul{
+    display: inline-block;
+}
+.info .line.sizes ul li{
+    list-style-type: none;
+    display: inline-block;
+    color: #b5b4b6;
+    font-size: 14px;
+    font-weight: 300;
+
+}
+
+.info .line.sizes ul li+li{
+    margin-left:24px;
+}
+
+.info .line.sizes ul li.active{
+    width:35px;
+    height:35px;
+    line-height:35px;
+    border-radius: 50%;
+    color: #9a4cff;
+    border: 1px solid #9a4cff;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.info .line.sizes + .line{
+    margin-top:12px;
+}
+.info .line.colors ul {
+    display: inline-block;
+}
+
+.info .colors.line ul li {
+    list-style-type: disc;
+    display: inline-block;
+    overflow: hidden;
+    border: 1px solid;
+    border-radius: 50%;
+    padding: 1px;
+}
+.info .colors.line ul li::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border: 3px solid transparent;
+    border-radius: 50%;
+}
+.info .colors.line ul li.active::after {
+    border-color: inherit;
+}
+
+
+.info .line.colors ul li{
+    list-style-type: none;
+    display: inline-block;
+}
+
+.info .line.amount .selector .left::before,
+.info .line.amount .selector .right::before{
+    font-size: 5px;
+    color: #c61e70;
+    vertical-align: middle;
+    font: sans-serif;
+}
+
+.info .line.amount .selector .left::before{
+    content: '\25C0';
+}
+
+.info .line.amount .selector .right::before{
+    content: '\25B6';
+}
+
+.info .line.amount .selector .number{
+    color: #c61e70;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.info .buy{
+    margin-top:25px;
+    text-align: center;
+}
+.info .buy button{
+    text-transform: uppercase;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #d867a1;
+    width: 226px;
+    height:40px;
+    text-align: center;
+    border:none;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 14px;
+    box-shadow: 0px 7px 10px 0 rgba(218, 111, 187, 0.59);
+}
+
+.images .boot{
+    position: absolute;
+    left: -42px;
+    bottom:68px;
+}
+
+.images{
+    text-align: center;
+}
+
+.images .logo{
+    width: 50px;
+    height: 18px;
+    background: url('https://o.andrienko.org/hillel/fe2/Nike%20Logo.png');
+    margin: 13px;
+}
+
+.images .size{
+    font-size: 257px;
+    font-weight: 300;
+    letter-spacing: -30.8px;
+    text-align: center;
+    position: absolute;
+    top:0;
+    left:33px;
+    color: #ffffff;
+    opacity: 0.1;
+}
+.plus{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height:30px;
+    background: #9a4cff;
+    color: #fff;
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0px 6px 9px 0 rgba(0, 0, 0, 0.6);
+}
+.plus::after{
+    font-size:25px;
+
+    content:'+';
+}
